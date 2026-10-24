@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="黄瑞旸的交易算法智能路由研究摘要：配对差值标签、P/Q双模型、时间样本外验证与数据处理流程。">
+  <meta name="theme-color" content="#f5f5f5">
+  <title>交易算法智能路由 | 黄瑞旸 Ryan Huang</title>
+  <link rel="canonical" href="https://hrynb.github.io/quant-research.html">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <div class="page" id="top">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Ryan Huang，返回首页">
+        <span class="brand-mark" aria-hidden="true"></span>RYAN HUANG
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html#work">作品</a>
+        <a href="index.html#about">关于</a>
+        <a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumb mono" aria-label="当前位置">
+        <a href="index.html">首页</a><span aria-hidden="true">/</span>
+        <a href="index.html#work">项目与作品</a><span aria-hidden="true">/</span>
+        <span aria-current="page">QUANT RESEARCH</span>
+      </nav>
+
+      <header class="research-hero">
+        <p class="eyebrow mono">PROJECT 01 / 量化研究</p>
+        <h1 class="research-title">交易算法智能路由</h1>
+        <p class="research-subtitle" lang="en">PAIRWISE COMPARISON / DIRECTION / MAGNITUDE</p>
+        <p class="research-lead">同一只股票，在不同状态下可能适合不同的交易算法。研究围绕“何时应从默认方案切换到另一方案”展开，将问题拆解为数据核对、相对标签构建、方向与幅度建模，以及时间样本外验证。</p>
+        <dl class="specifications">
+          <div><dt>QUESTION / 问题</dt><dd>交易算法的相对表现与选择</dd></div>
+          <div><dt>TOOLS / 工具</dt><dd>Python · pandas · LightGBM</dd></div>
+          <div><dt>FORMAT / 展示</dt><dd>方法摘要，不披露业务数据</dd></div>
+        </dl>
+      </header>
+
+      <div class="research-grid">
+        <nav class="contents" aria-label="文章目录">
+          <p class="section-label mono">CONTENTS / 目录</p>
+          <ol>
+            <li><a href="#question"><span>01</span>问题与参与内容</a></li>
+            <li><a href="#labels"><span>02</span>配对差值标签</a></li>
+            <li><a href="#models"><span>03</span>P/Q双模型</a></li>
+            <li><a href="#validation"><span>04</span>样本外与稳健性</a></li>
+            <li><a href="#reflection"><span>05</span>工程与思考</a></li>
+          </ol>
+        </nav>
+
+        <article class="research-content" aria-label="研究摘要">
+          <section id="question" aria-labelledby="question-title">
+            <div class="chapter-heading"><span class="chapter-number mono">01</span><h2 id="question-title">问题与参与内容</h2></div>
+            <p>相比单独预测某一算法的收益，路由决策更关心一个相对问题：在同一对象、同一目标期上，方案A是否优于默认方案B？即使两个方案都盈利，切换到相对较差的方案也可能损失增量收益。</p>
+            <p>因此，研究以固定基准方案为参照，将建模目标与实际选择问题对齐，而不是仅根据某个算法的绝对收益判断是否切换。</p>
+            <p class="contribution">我的参与包括数据处理与一致性检查、配对标签构建、模型训练和走步评估，以及日常数据处理、训练与预测流程的自动化搭建。</p>
+          </section>
+
+          <section id="labels" aria-labelledby="labels-title">
+            <div class="chapter-heading"><span class="chapter-number mono">02</span><h2 id="labels-title">先配对，再构造差值</h2></div>
+            <p>以“对象、特征时点、目标时点”为键，对两个方案的已实现结果进行一对一配对。标签来自真实结果的差值，而不是先训练两个绝对收益模型、再把预测结果相减。</p>
+            <div class="equation-block">
+              <p class="mono">SAME OBJECT / SAME PERIOD / SAME RETURN BASIS</p>
+              <code class="equation">delta = return_A - return_B</code>
+              <p>delta大于0，表示A优于B；小于0，表示B优于A；等于0，表示两方案在该评价口径下持平。</p>
+            </div>
+            <ul class="check-list">
+              <li><strong>严格配对。</strong>对象、目标时间、收益计算口径和单位必须一致，不能跨对象或跨期直接相减。</li>
+              <li><strong>缺失不等于零。</strong>只有两侧结果均有效时才构造标签；已确认的真实零结果可以保留，未知或异常结果不能填成零。</li>
+              <li><strong>固定方向。</strong>始终使用A减B，保证标签符号的含义一致，避免训练、评估和路由阶段混淆。</li>
+            </ul>
+            <p>这一设计有助于控制同一场景中的共同影响，让模型更直接地学习方案间差异，但配对本身并不等于消除了全部噪声，也不自动构成因果识别。</p>
+          </section>
+
+          <section id="models" aria-labelledby="models-title">
+            <div class="chapter-heading"><span class="chapter-number mono">03</span><h2 id="models-title">方向与差异强度分开学习</h2></div>
+            <p>同一个差值可以产生两个不同的学习目标：一是“哪一侧更好”，二是“两者差异有多大”。分类与回归分别处理，避免把胜率与收益幅度混为一谈。</p>
+            <div class="model-grid">
+              <div class="model-card">
+                <p class="mono">DIRECTION / 方向</p>
+                <span class="model-symbol" aria-hidden="true">P</span>
+                <h3>A胜过B的概率</h3>
+                <p>使用LightGBM二分类模型，预测给定当前特征时，A的结果严格优于B的概率。</p>
+                <p>全局P标签在有效配对中定义为：delta大于0取1；delta小于或等于0取0。缺失结果不参与标签构造。</p>
+              </div>
+              <div class="model-card">
+                <p class="mono">MAGNITUDE / 差异强度</p>
+                <span class="model-symbol" aria-hidden="true">Q</span>
+                <h3>选择这件事有多重要</h3>
+                <p>以<code>abs(delta)</code>为标签，使用稳健回归学习差异强度，用于识别差异较大的对象。</p>
+                <p>高Q不代表A一定更好，既可能大赢，也可能大输；幅度评分也不应未经校准就解释为精确的预期收益。</p>
+              </div>
+            </div>
+            <p>特征围绕比较问题构造，包括两个方案各自的历史状态、双方特征之差、配对历史差值与胜率，以及共同的市场环境。历史统计只使用决策时已经可获得的信息。</p>
+            <p>模型分数可以用于候选排序和分层，但P与Q的简单乘积并不天然等于预期增量收益。是否切换，仍需要结合成本、资格约束和样本外验证结果判断。</p>
+          </section>
+
+          <section id="validation" aria-labelledby="validation-title">
+            <div class="chapter-heading"><span class="chapter-number mono">04</span><h2 id="validation-title">把验证放在时间之外</h2></div>
+            <p>采用按日期推进的走步样本外预测（OOF），而不是把同一时间段中的样本随机打散。每个目标日都只使用此前可获得的数据训练和选择模型。</p>
+            <ol class="pipeline" aria-label="研究验证流程">
+              <li><span class="mono">01 / ALIGN</span><strong>对齐历史数据</strong><p>核对时间、对象与标签口径。</p></li>
+              <li><span class="mono">02 / TRAIN</span><strong>仅用过去训练</strong><p>在历史窗口内训练与验证。</p></li>
+              <li><span class="mono">03 / PREDICT</span><strong>预测下一目标日</strong><p>保留真实的样本外输出。</p></li>
+              <li><span class="mono">04 / COMPARE</span><strong>与默认方案比较</strong><p>评估增量与风险，而非只看拟合。</p></li>
+            </ol>
+            <ul class="check-list">
+              <li><strong>时间与口径一致。</strong>将特征可用时间、标签所属期间和模型训练截止时间明确分开，检查未来信息泄露。</li>
+              <li><strong>参数敏感性。</strong>比较不同评估窗口、候选比例和筛选条件，观察结论是否依赖单一设置。</li>
+              <li><strong>极端值检验。</strong>比较原始结果与多档缩尾结果，判断平均增量是否主要来自少数异常对象或日期。</li>
+              <li><strong>按日评估。</strong>结合正增量日占比、HAC统计和区块Bootstrap，关注时间相关性及有限样本的不确定性。</li>
+              <li><strong>流程一致性。</strong>核对历史路由记录与回测决策，避免研究逻辑与实际预测流程不一致。</li>
+            </ul>
+          </section>
+
+          <section id="reflection" aria-labelledby="reflection-title">
+            <div class="chapter-heading"><span class="chapter-number mono">05</span><h2 id="reflection-title">工程与研究思考</h2></div>
+            <p>除了模型本身，还需要将数据校验、训练、预测和日志记录串成可重复运行的流程。结果异常时，先核对数据完整性和口径，再判断是否为模型问题，不能把所有异常都解释为市场变化。</p>
+            <p>这段研究让我更重视三个区别：排序能力不等于概率校准，方向正确不等于收益一定更高，回测表现也不等于未来保证。研究的价值不仅在于一个模型分数，还在于完整的数据边界、验证过程和可复查的决策记录。</p>
+            <p class="scope-note">展示范围：本页仅整理通用研究思路与个人参与内容，不提供机构标识、内部算法编号、业务数据、生产参数、源码或收益数字。内容用于个人项目介绍，不构成投资建议。</p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Ryan Huang / 黄瑞旸<br>QUANT RESEARCH · METHODS SUMMARY</p>
+      <a href="index.html#work">返回项目列表 <span aria-hidden="true">←</span></a>
+      <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
+    </footer>
+  </div>
+</body>
+</html>
