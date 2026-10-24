@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="黄瑞旸的微电网购电与储能调度数学建模项目：混合整数规划、两阶段随机规划、滚动优化与走步验证。">
+  <meta name="theme-color" content="#ffffff">
+  <title>微电网购电与储能调度 | 黄瑞旸 Ryan Huang</title>
+  <link rel="canonical" href="https://hrynb.github.io/math-modeling.html">
+  <link rel="stylesheet" href="site.css?v=white-1">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <div class="page" id="top">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Ryan Huang，返回首页">
+        <span class="brand-mark" aria-hidden="true"></span>RYAN HUANG
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html#work">作品</a>
+        <a href="index.html#about">关于</a>
+        <a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumb mono" aria-label="当前位置">
+        <a href="index.html">首页</a><span aria-hidden="true">/</span>
+        <a href="index.html#work">项目与作品</a><span aria-hidden="true">/</span>
+        <span aria-current="page">MATHEMATICAL MODELING</span>
+      </nav>
+
+      <header class="research-hero">
+        <p class="eyebrow mono">PROJECT 02 / 数学建模</p>
+        <h1 class="research-title">微电网购电与储能调度</h1>
+        <p class="research-subtitle" lang="en">MICROGRID / ENERGY STORAGE / STOCHASTIC OPTIMIZATION</p>
+        <p class="research-lead">当用电负荷、光伏出力与外部电价随时间变化，微电网需要在满足负载和储能约束的前提下，决定何时购电、充电、放电，以及何时根据新预报调整计划。项目围绕这类不确定性下的调度决策展开。</p>
+        <dl class="specifications">
+          <div><dt>TOPIC / 题目</dt><dd>微网与外部电网电力调控策略</dd></div>
+          <div><dt>METHODS / 方法</dt><dd>混合整数规划 · 两阶段随机规划 · 滚动优化</dd></div>
+          <div><dt>ROLE / 参与</dt><dd>建模、数据分析与求解验证</dd></div>
+        </dl>
+      </header>
+
+      <div class="research-grid">
+        <nav class="contents" aria-label="文章目录">
+          <p class="section-label mono">CONTENTS / 目录</p>
+          <ol>
+            <li><a href="#question"><span>01</span>问题与参与内容</a></li>
+            <li><a href="#data"><span>02</span>数据与信息边界</a></li>
+            <li><a href="#models"><span>03</span>从确定性到滚动决策</a></li>
+            <li><a href="#validation"><span>04</span>回测与压力测试</a></li>
+            <li><a href="#reflection"><span>05</span>项目产出与思考</a></li>
+          </ol>
+        </nav>
+
+        <article class="research-content" aria-label="数模项目摘要">
+          <section id="question" aria-labelledby="question-title">
+            <div class="chapter-heading"><span class="chapter-number mono">01</span><h2 id="question-title">在供电约束下控制总成本</h2></div>
+            <p>题目中的微网由外网购电、光伏发电和储能共同满足小区负载。储能既能转移电量，也会受到容量、功率与充放电效率的限制；购电不足会触发更高成本的紧急购电，计划调整也有相应费用。</p>
+            <p>因此，目标不是简单地“低价充电、高价放电”，而是在供需平衡与物理约束下，联合考虑计划购电、调整和应急补购的成本。各问逐步引入负荷与光伏误差、更新预报和波动电价。</p>
+            <p class="contribution">我的参与包括数据整理、净负荷与电价预测、历史残差场景生成、优化模型构建，以及走步回测和压力测试，重点连接“预测什么”与“如何作出可执行决策”。</p>
+          </section>
+
+          <section id="data" aria-labelledby="data-title">
+            <div class="chapter-heading"><span class="chapter-number mono">02</span><h2 id="data-title">先对齐数据，再限制可用信息</h2></div>
+            <p>输入包括负荷、光伏实际出力、不同发布时刻的光伏预报，以及固定或波动电价。购电和储能计划以10分钟为时间步组织，既要统一时间索引，也要区分预测发布时刻与预测对应的目标时刻。</p>
+            <div class="equation-block">
+              <p class="mono">ENERGY BALANCE / 同一时间步内的电量平衡</p>
+              <code class="equation">外网购电 + 光伏利用 + 储能放电 = 负荷用电 + 储能充电</code>
+              <p>各项统一为电量口径；另外设置储能状态更新、容量与功率限制，以及充放电互斥等约束。</p>
+            </div>
+            <ul class="check-list">
+              <li><strong>单位一致。</strong>区分功率与电量，按时间步长完成换算后再进行储能状态更新和费用结算。</li>
+              <li><strong>预报按发布时刻使用。</strong>当时尚未发布的新预报不能提前进入决策，事后实际值只用于评估和后续历史更新。</li>
+              <li><strong>从历史误差构造场景。</strong>用已知预测残差描述不确定性，让优化模型面对一组可能情景，而不是把单点预测当作未来事实。</li>
+            </ul>
+          </section>
+
+          <section id="models" aria-labelledby="models-title">
+            <div class="chapter-heading"><span class="chapter-number mono">03</span><h2 id="models-title">逐步增加决策的现实条件</h2></div>
+            <p>四个问题共用供需平衡和储能约束，并逐步扩展对不确定性与信息更新的处理。</p>
+            <div class="model-grid">
+              <div class="model-card">
+                <p class="mono">01 / DETERMINISTIC</p>
+                <h3>确定性购电与储能计划</h3>
+                <p>从给定电价、负荷与光伏预测出发，使用混合整数规划联合求解购电与充放电计划。</p>
+                <p>用状态方程连接各时间步，并按题目要求约束期初与期末电量、容量和充放电互斥关系。</p>
+              </div>
+              <div class="model-card">
+                <p class="mono">02 / STOCHASTIC</p>
+                <h3>预测误差下的日前计划</h3>
+                <p>针对负荷与光伏随时间变化的情形，结合预测和历史残差场景构建两阶段随机规划。</p>
+                <p>将日前计划与情景实现后的补救成本连接，平衡提前多购电与缺电紧急补购的风险。</p>
+              </div>
+              <div class="model-card">
+                <p class="mono">03 / ROLLING</p>
+                <h3>新预报驱动的滚动调整</h3>
+                <p>在新预报到达后，根据当前储能状态重新优化后续计划，并计入减少和追加购电的非对称调整费用。</p>
+                <p>比较新信息带来的误差减少与调整成本，避免认为“预报更新了，就一定应该改计划”。</p>
+              </div>
+              <div class="model-card">
+                <p class="mono">04 / VARIABLE PRICE</p>
+                <h3>波动电价下的联合决策</h3>
+                <p>进一步引入电价预测，在波动电价下重新评估日前计划和滚动调整策略。</p>
+                <p>关注预测误差与实际结算之间的联系，避免使用事后价格构造当时不可实现的最优决策。</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="validation" aria-labelledby="validation-title">
+            <div class="chapter-heading"><span class="chapter-number mono">04</span><h2 id="validation-title">同时检查可行性、成本与风险</h2></div>
+            <p>预测误差指标只是中间结果。项目采用严格走步回测，将预测、场景生成、优化与实际结算连接起来，并在不同误差和价格条件下检验策略。</p>
+            <ol class="pipeline" aria-label="建模与验证流程">
+              <li><span class="mono">01 / HISTORY</span><strong>对齐历史数据</strong><p>只使用决策时已经可见的信息。</p></li>
+              <li><span class="mono">02 / SCENARIOS</span><strong>预测与生成场景</strong><p>用历史误差描述未来不确定性。</p></li>
+              <li><span class="mono">03 / OPTIMIZE</span><strong>求解购电与调度</strong><p>同时满足储能与供电约束。</p></li>
+              <li><span class="mono">04 / SETTLE</span><strong>实际结算与检验</strong><p>复核费用、应急补购与风险。</p></li>
+            </ol>
+            <ul class="check-list">
+              <li><strong>时间边界。</strong>预测训练、残差统计和策略选择均使用过去信息，检查预报是否在发布之前被使用。</li>
+              <li><strong>物理可行性。</strong>逐时检查负荷保障、储能电量、充放电功率、互斥关系，以及各问要求的边界条件。</li>
+              <li><strong>结算口径。</strong>区分计划购电费用、调整费用和紧急购电费用，避免把不同口径的结果直接比较。</li>
+              <li><strong>压力测试。</strong>分析预测偏差、价格冲击和参数变化对总成本与紧急补购的影响，而不只关注平均表现。</li>
+            </ul>
+          </section>
+
+          <section id="reflection" aria-labelledby="reflection-title">
+            <div class="chapter-heading"><span class="chapter-number mono">05</span><h2 id="reflection-title">把预测模型连接到实际决策</h2></div>
+            <p>项目形成了从数据处理、预测与场景生成，到优化求解、走步回测和风险验证的研究流程。代码输出购电与储能计划，配合约束校验和结果表格，使计算过程能够复查。</p>
+            <p>一个重要体会是：预测更准确并不必然意味着调度成本更低。在紧急购电、追加和取消计划成本不对称的条件下，误差方向与尾部风险同样重要；模型不仅需要“算出方案”，还需要保证方案可执行、费用可核对、信息来源可追溯。</p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Ryan Huang / 黄瑞旸<br>MATHEMATICAL MODELING · PROJECT SUMMARY</p>
+      <a href="index.html#work">返回项目列表 <span aria-hidden="true">←</span></a>
+      <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
+    </footer>
+  </div>
+</body>
+</html>
