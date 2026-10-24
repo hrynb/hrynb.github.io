@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="黄瑞旸 Ryan Huang 的个人主页，记录数据分析、研究笔记、信息可视化与摄影作品。">
+  <meta name="theme-color" content="#f7f6f2">
+  <title>黄瑞旸 Ryan Huang | 项目与作品</title>
+  <link rel="canonical" href="https://hrynb.github.io/">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f6f2;
+      --ink: #262a28;
+      --muted: #696d67;
+      --rule: #d8d9d1;
+      --accent: #a33336;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+      --serif: Georgia, "Noto Serif SC", "Songti SC", SimSun, serif;
+      --mono: "Cascadia Code", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent); }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+    ::selection { background: #ead5d4; color: var(--ink); }
+    .page { width: min(1120px, calc(100% - 96px)); margin: 0 auto; }
+    .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; }
+
+    .skip-link { position: absolute; top: 12px; left: 16px; z-index: 2; padding: 10px 14px; background: var(--ink); color: white; transform: translateY(-180%); }
+    .skip-link:focus { transform: none; color: white; }
+    .site-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 0 24px; border-bottom: 1px solid var(--rule); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .06em; }
+    .brand-mark { width: 7px; height: 7px; background: var(--accent); }
+    .nav { display: flex; gap: 28px; font-size: 13px; }
+    .nav a { padding: 4px 0; }
+    .external { font-size: 11px; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 72px; padding: 82px 0 78px; border-bottom: 1px solid var(--rule); }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 26px; color: var(--muted); }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--accent); }
+    h1 { margin: 0; font-family: var(--serif); font-weight: 500; }
+    .name-cn { display: block; font-size: clamp(48px, 6.3vw, 82px); line-height: 1.2; letter-spacing: .05em; }
+    .name-en { display: block; margin-top: 10px; font-size: clamp(26px, 3vw, 37px); line-height: 1.3; letter-spacing: -.025em; }
+    .hero-line { margin: 30px 0 14px; font-size: 21px; font-weight: 500; letter-spacing: .03em; }
+    .hero-description { max-width: 33em; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .hero-link { display: inline-block; margin-top: 30px; padding-bottom: 6px; border-bottom: 1px solid var(--accent); font-size: 13px; }
+    .profile-index { align-self: end; border-left: 1px solid var(--rule); padding-left: 27px; }
+    .profile-label { margin: 0 0 22px; color: var(--accent); }
+    .profile-index dl { margin: 0; }
+    .profile-index dl > div { padding: 15px 0; border-top: 1px solid var(--rule); }
+    .profile-index dt { color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .06em; }
+    .profile-index dd { margin: 7px 0 0; font-size: 13px; line-height: 1.7; }
+
+    .work-section { padding: 54px 0 58px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 26px; }
+    .section-label { margin: 0 0 12px; color: var(--accent); }
+    h2 { margin: 0; font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.4; }
+    .section-note { margin: 0 0 5px; color: var(--muted); font-size: 12px; }
+    .project { border-top: 1px solid var(--rule); }
+    .project:last-child { border-bottom: 1px solid var(--rule); }
+    .project summary { display: grid; grid-template-columns: 40px minmax(0, 1fr) 116px; gap: 22px; padding: 26px 0; list-style: none; cursor: pointer; }
+    .project summary::-webkit-details-marker { display: none; }
+    .project-number { padding-top: 4px; color: var(--muted); }
+    .project-kind { display: block; margin-bottom: 8px; color: var(--accent); font-size: 10px; font-family: var(--mono); letter-spacing: .08em; }
+    .project-name { display: block; font-size: 23px; font-weight: 500; line-height: 1.5; }
+    .project-description { display: block; max-width: 48em; margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .project-tags { display: block; margin-top: 14px; color: var(--muted); font-size: 11px; font-family: var(--mono); line-height: 1.6; }
+    .project-control { display: flex; align-items: center; justify-content: end; gap: 18px; align-self: center; font-size: 12px; color: var(--muted); }
+    .plus { display: block; font-family: var(--mono); font-size: 24px; font-weight: 300; color: var(--accent); }
+    .project[open] .plus { transform: rotate(45deg); }
+    .project summary:hover .project-name { color: var(--accent); }
+    .project-body { margin: 0 138px 28px 62px; padding: 0 0 0 18px; border-left: 2px solid var(--accent); font-size: 14px; line-height: 1.9; }
+    .project-body p { margin: 0; }
+    .project-body .status { margin-top: 12px; color: var(--muted); font-size: 12px; }
+
+    .about-section { display: grid; grid-template-columns: 1fr 2fr; gap: 70px; padding: 2px 0 62px; border-bottom: 1px solid var(--rule); }
+    .about-copy { max-width: 45em; }
+    .about-copy p { margin: 0; font-size: 14px; line-height: 2; }
+    .about-copy p + p { margin-top: 15px; color: var(--muted); }
+    .about-links { margin-top: 22px; font-size: 13px; }
+    .about-links a { border-bottom: 1px solid var(--rule); padding-bottom: 4px; }
+    .site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 30px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .site-footer p { margin: 0; }
+
+    @media (max-width: 860px) {
+      .page { width: calc(100% - 56px); }
+      .hero { grid-template-columns: minmax(0, 1fr) 240px; gap: 36px; padding: 60px 0; }
+      .profile-index { padding-left: 20px; }
+      .project summary { grid-template-columns: 30px minmax(0, 1fr) 90px; gap: 16px; }
+      .project-body { margin-left: 46px; margin-right: 106px; }
+      .about-section { gap: 36px; }
+    }
+
+    @media (max-width: 600px) {
+      .page { width: calc(100% - 40px); }
+      .site-header { padding: 23px 0 20px; gap: 12px; }
+      .brand { font-size: 11px; gap: 7px; letter-spacing: .02em; }
+      .nav { gap: 16px; font-size: 12px; }
+      .hero { grid-template-columns: 1fr; gap: 36px; padding: 44px 0; }
+      .eyebrow { margin-bottom: 24px; font-size: 10px; }
+      .name-cn { font-size: 54px; }
+      .name-en { font-size: 29px; }
+      .hero-line { font-size: 19px; margin-top: 25px; }
+      .hero-description { font-size: 13px; }
+      .hero-link { margin-top: 23px; }
+      .profile-index { border-left: 0; padding-left: 0; }
+      .profile-label { margin-bottom: 14px; }
+      .profile-index dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+      .profile-index dl > div:last-child { grid-column: 1 / -1; }
+      .work-section { padding: 38px 0 42px; }
+      .section-heading { display: block; margin-bottom: 20px; }
+      h2 { font-size: 27px; }
+      .section-note { margin-top: 12px; }
+      .project summary { grid-template-columns: 25px minmax(0, 1fr) 18px; gap: 12px; padding: 23px 0; }
+      .project-name { font-size: 19px; }
+      .project-description { font-size: 13px; }
+      .project-kind { font-size: 9px; }
+      .control-label { display: none; }
+      .project-body { margin-left: 37px; margin-right: 0; padding-left: 14px; font-size: 13px; }
+      .about-section { grid-template-columns: 1fr; gap: 23px; padding-bottom: 42px; }
+      .about-copy p { font-size: 13px; }
+      .site-footer { align-items: start; padding-top: 21px; }
+    }
+
+    @media (max-width: 350px) {
+      .nav { gap: 11px; }
+      .name-cn { font-size: 46px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <div class="page" id="top">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Ryan Huang，回到页首">
+        <span class="brand-mark" aria-hidden="true"></span>RYAN HUANG
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#work">作品</a>
+        <a href="#about">关于</a>
+        <a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" aria-labelledby="name">
+        <div>
+          <p class="eyebrow mono">PERSONAL INDEX / 个人主页</p>
+          <h1 id="name"><span class="name-cn">黄瑞旸</span><span class="name-en" lang="en">Ryan Huang</span></h1>
+          <p class="hero-line">数据、模型与日常观察。</p>
+          <p class="hero-description">复旦大学本科在读。这里整理研究中的问题与方法、可视化作品，以及一些摄影与日常记录。</p>
+          <a class="hero-link" href="#work">浏览项目与作品 <span aria-hidden="true">↓</span></a>
+        </div>
+        <aside class="profile-index" aria-label="个人索引">
+          <p class="profile-label mono">A SMALL COLLECTION OF WORK</p>
+          <dl>
+            <div><dt>EDUCATION / 教育</dt><dd>复旦大学 · 经济管理试验班</dd></div>
+            <div><dt>INTERESTS / 关注</dt><dd>数据分析、量化方法、信息可视化</dd></div>
+            <div><dt>OUTSIDE RESEARCH / 研究之外</dt><dd>摄影、篮球与田径</dd></div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="work-section" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <div><p class="section-label mono">01 / SELECTED WORK</p><h2 id="work-title">项目与作品</h2></div>
+          <p class="section-note">点击条目，展开简介。</p>
+        </div>
+
+        <!-- Each details element is one project. Public materials can be linked inside it later. -->
+        <details class="project">
+          <summary>
+            <span class="project-number mono">01</span>
+            <span>
+              <span class="project-kind">RESEARCH / 研究笔记</span>
+              <span class="project-name">比较学习与算法选择</span>
+              <span class="project-description">从两个方案的成对比较出发，整理标签设计、时间验证与模型评估的思路。</span>
+              <span class="project-tags">Python / Machine Learning / Evaluation</span>
+            </span>
+            <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
+          </summary>
+          <div class="project-body">
+            <p>关注如何把实际决策问题转化为可检验的建模任务：先明确比较对象与评价口径，再设计标签，并使用时间顺序一致的样本外验证检查结果。</p>
+            <p class="status">材料整理中。目前仅展示方法简介，后续补充可公开的笔记和示例。</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="project-number mono">02</span>
+            <span>
+              <span class="project-kind">VISUALIZATION / 信息可视化</span>
+              <span class="project-name">人口变化与人群结构</span>
+              <span class="project-description">用堆叠柱、折线与双轴布局，探索人口规模和结构变化的对照表达。</span>
+              <span class="project-tags">Python / Matplotlib / SVG</span>
+            </span>
+            <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
+          </summary>
+          <div class="project-body">
+            <p>围绕同一时间轴上的多种数据，尝试不同图形布局与灰阶配色，重点处理量纲区分、图例、数值标注及视觉层次。</p>
+            <p class="status">图表与说明整理中，后续补充作品预览和数据口径。</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="project-number mono">03</span>
+            <span>
+              <span class="project-kind">PHOTOGRAPHY / 摄影</span>
+              <span class="project-name">光线、空间与日常</span>
+              <span class="project-description">研究之外，用照片记录生活中的光线、空间与片段。</span>
+              <span class="project-tags">Photography / Personal Collection</span>
+            </span>
+            <span class="project-control"><span class="control-label">作品简介</span><span class="plus" aria-hidden="true">+</span></span>
+          </summary>
+          <div class="project-body">
+            <p>这里将作为摄影作品的展示区域，按主题整理照片及拍摄笔记。</p>
+            <p class="status">作品整理中，照片尚未上传。</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <div><p class="section-label mono">02 / ABOUT</p><h2 id="about-title">关于我</h2></div>
+        <div class="about-copy">
+          <p>我叫黄瑞旸，目前在复旦大学读本科，学习经济与管理相关课程，对数据分析、量化研究与机器学习感兴趣，也喜欢摄影和运动。</p>
+          <p>这个网站用来整理项目中的问题、方法和结果，也保留研究之外的作品与观察。内容会随着学习与实践慢慢更新。</p>
+          <div class="about-links"><a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">在 GitHub 上找到我 <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Ryan Huang / 黄瑞旸<br>HTML &amp; CSS · GitHub Pages</p>
+      <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
+    </footer>
+  </div>
+</body>
+</html>
