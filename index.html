@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="黄瑞旸 Ryan Huang 的个人主页，记录量化研究、数学建模与摄影作品。">
+  <meta name="description" content="黄瑞旸 Ryan Huang 的个人主页：校内课程项目、校外实习与比赛、摄影与运动。">
   <meta name="theme-color" content="#ffffff">
   <title>黄瑞旸 Ryan Huang | 项目与作品</title>
   <link rel="canonical" href="https://hrynb.github.io/">
-  <link rel="stylesheet" href="site.css?v=white-1">
+  <link rel="stylesheet" href="site.css?v=compact-1">
 </head>
 <body>
   <a class="skip-link" href="#main">跳转到正文</a>
@@ -17,19 +17,20 @@
         <span class="brand-mark" aria-hidden="true"></span>RYAN HUANG
       </a>
       <nav class="nav" aria-label="主导航">
-        <a href="#work">作品</a>
-        <a href="#about">关于</a>
+        <a href="#course-projects">课程项目</a>
+        <a href="#experience">实习与比赛</a>
+        <a href="#personal">个人风采</a>
         <a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
       </nav>
     </header>
 
     <main id="main" tabindex="-1">
-      <section class="hero" aria-labelledby="name">
+      <section class="hero" id="about" aria-labelledby="name">
         <div>
           <p class="eyebrow mono">PERSONAL INDEX / 个人主页</p>
           <h1 id="name"><span class="name-cn">黄瑞旸</span><span class="name-en" lang="en">Ryan Huang</span></h1>
           <p class="hero-line">数据、模型与日常观察。</p>
-          <p class="hero-description">复旦大学本科在读。这里整理量化研究中的问题与方法、数学建模项目，以及一些摄影与日常记录。</p>
+          <p class="hero-description">复旦大学本科在读，关注量化研究与数学建模，喜欢摄影、篮球和田径。</p>
           <a class="hero-link" href="#work">浏览项目与作品 <span aria-hidden="true">↓</span></a>
         </div>
         <aside class="profile-index" aria-label="个人索引">
@@ -42,77 +43,94 @@
         </aside>
       </section>
 
-      <section class="work-section" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <div><p class="section-label mono">01 / SELECTED WORK</p><h2 id="work-title">项目与作品</h2></div>
-          <p class="section-note">点击条目，展开简介。</p>
-        </div>
-
-        <!-- Each details element is one project. Public materials can be linked inside it later. -->
-        <details class="project">
-          <summary>
-            <span class="project-number mono">01</span>
-            <span>
-              <span class="project-kind">QUANT RESEARCH / 量化研究</span>
-              <span class="project-name">交易算法智能路由</span>
-              <span class="project-description">比较不同交易算法的相对表现，记录差值标签、P/Q双模型、走步验证与自动化流程。</span>
-              <span class="project-tags">Python / LightGBM / Walk-forward</span>
-            </span>
-            <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
-          </summary>
-          <div class="project-body">
-            <p>围绕“同一对象上应选择哪一种算法”，参与数据处理、配对标签构建、模型评估与自动化流程搭建。详情页整理通用研究思路，不包含业务数据、内部源码或业绩数字。</p>
-            <a class="project-link" href="quant-research.html">阅读研究摘要 <span aria-hidden="true">→</span></a>
+      <div id="work">
+        <section class="work-section" id="course-projects" aria-labelledby="courses-title">
+          <div class="section-heading">
+            <div><p class="section-label mono">01 / COURSE PROJECTS</p><h2 id="courses-title">校内课程项目</h2></div>
           </div>
-        </details>
+          <details class="project">
+            <summary>
+              <span class="project-number mono">01</span>
+              <span>
+                <span class="project-kind">DATA ANALYSIS / 数据分析</span>
+                <span class="project-name">音乐特征与流行度分析</span>
+                <span class="project-description">使用NumPy、pandas处理音乐数据，分析音乐特征与流行度的关系，并使用机器学习进行预测。</span>
+                <span class="project-tags">Python / pandas / Machine Learning</span>
+              </span>
+              <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
+            </summary>
+            <div class="project-body">
+              <p>围绕音乐特征与流行度之间的联系，完成数据处理与分析，并将特征用于流行度预测，练习从数据探索到建模的完整过程。</p>
+            </div>
+          </details>
+        </section>
 
-        <details class="project">
-          <summary>
-            <span class="project-number mono">02</span>
-            <span>
-              <span class="project-kind">MATHEMATICAL MODELING / 数学建模</span>
-              <span class="project-name">微电网购电与储能调度</span>
-              <span class="project-description">围绕负荷、光伏与电价的不确定性，结合混合整数规划、场景分析和滚动优化制定购电与储能策略。</span>
-              <span class="project-tags">Python / MILP / Rolling Optimization</span>
-            </span>
-            <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
-          </summary>
-          <div class="project-body">
-            <p>以“微网与外部电网电力调控策略”为题，参与建模与数据分析，将预测、历史残差场景生成、优化求解与压力测试串成可复查的研究流程。</p>
-            <a class="project-link" href="math-modeling.html">阅读数模项目 <span aria-hidden="true">→</span></a>
+        <section class="work-section" id="experience" aria-labelledby="experience-title">
+          <div class="section-heading">
+            <div><p class="section-label mono">02 / INTERNSHIPS &amp; COMPETITIONS</p><h2 id="experience-title">校外实习 &amp; 比赛</h2></div>
           </div>
-        </details>
+          <details class="project">
+            <summary>
+              <span class="project-number mono">01</span>
+              <span>
+                <span class="project-kind">INTERNSHIP / 量化研究实习</span>
+                <span class="project-name">交易算法智能路由</span>
+                <span class="project-description">比较不同交易算法的相对表现，构建差值标签与P/Q双模型，并通过走步回测评估路由策略。</span>
+                <span class="project-tags">Python / LightGBM / Walk-forward</span>
+              </span>
+              <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
+            </summary>
+            <div class="project-body">
+              <p>围绕“同一对象上应选择哪一种算法”，参与数据处理、配对标签构建、模型评估与自动化流程搭建。</p>
+              <a class="project-link" href="quant-research.html">查看项目 <span aria-hidden="true">→</span></a>
+            </div>
+          </details>
 
-        <details class="project">
-          <summary>
-            <span class="project-number mono">03</span>
-            <span>
-              <span class="project-kind">PHOTOGRAPHY / 摄影</span>
-              <span class="project-name">光线、空间与日常</span>
-              <span class="project-description">研究之外，用照片记录生活中的光线、空间与片段。</span>
-              <span class="project-tags">Photography / Personal Collection</span>
-            </span>
-            <span class="project-control"><span class="control-label">作品简介</span><span class="plus" aria-hidden="true">+</span></span>
-          </summary>
-          <div class="project-body">
-            <p>这里将作为摄影作品的展示区域，按主题整理照片及拍摄笔记。</p>
-            <p class="status">作品整理中，照片尚未上传。</p>
+          <details class="project">
+            <summary>
+              <span class="project-number mono">02</span>
+              <span>
+                <span class="project-kind">COMPETITION / 数学建模竞赛</span>
+                <span class="project-name">微电网购电与储能调度</span>
+                <span class="project-description">围绕负荷、光伏与电价的不确定性，结合混合整数规划、场景分析和滚动优化制定购电与储能策略。</span>
+                <span class="project-tags">Python / MILP / Rolling Optimization</span>
+              </span>
+              <span class="project-control"><span class="control-label">项目简介</span><span class="plus" aria-hidden="true">+</span></span>
+            </summary>
+            <div class="project-body">
+              <p>以“微网与外部电网电力调控策略”为题，参与建模与数据分析，将预测、历史残差场景生成、优化求解与压力测试串成可复查的研究流程。</p>
+              <a class="project-link" href="math-modeling.html">查看项目 <span aria-hidden="true">→</span></a>
+            </div>
+          </details>
+        </section>
+
+        <section class="work-section" id="personal" aria-labelledby="personal-title">
+          <div class="section-heading">
+            <div><p class="section-label mono">03 / PERSONAL</p><h2 id="personal-title">个人风采</h2></div>
           </div>
-        </details>
-      </section>
-
-      <section class="about-section" id="about" aria-labelledby="about-title">
-        <div><p class="section-label mono">02 / ABOUT</p><h2 id="about-title">关于我</h2></div>
-        <div class="about-copy">
-          <p>我叫黄瑞旸，目前在复旦大学读本科，学习经济与管理相关课程，对数据分析、量化研究、数学建模与机器学习感兴趣，也喜欢摄影和运动。</p>
-          <p>这个网站用来整理项目中的问题、方法和结果，也保留研究之外的作品与观察。内容会随着学习与实践慢慢更新。</p>
-          <div class="about-links"><a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">在 GitHub 上找到我 <span aria-hidden="true">↗</span></a></div>
-        </div>
-      </section>
+          <div class="personal-grid">
+            <article class="personal-item">
+              <p class="personal-type mono">01 / PHOTOGRAPHY</p>
+              <h3>摄影</h3>
+              <p>摄影协会核心成员，喜欢用照片记录生活中的光线、空间与片段。</p>
+            </article>
+            <article class="personal-item">
+              <p class="personal-type mono">02 / SPORTS</p>
+              <h3>篮球与田径</h3>
+              <p>参与校内篮球与田径赛事，曾获校田径运动会冠军和新生杯篮球赛季军。</p>
+            </article>
+            <article class="personal-item">
+              <p class="personal-type mono">03 / CAMPUS LIFE</p>
+              <h3>校园活动</h3>
+              <p>担任学生会体育部干事，参与学院运动会及体育活动的组织与执行。</p>
+            </article>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <p>Ryan Huang / 黄瑞旸<br>HTML &amp; CSS · GitHub Pages</p>
+      <p>Ryan Huang / 黄瑞旸</p>
       <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
     </footer>
   </div>

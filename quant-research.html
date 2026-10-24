@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="黄瑞旸的交易算法智能路由研究摘要：配对差值标签、P/Q双模型、时间样本外验证与数据处理流程。">
+  <meta name="description" content="黄瑞旸的交易算法智能路由研究：配对差值标签、P/Q双模型、时间样本外验证与自动化流程。">
   <meta name="theme-color" content="#ffffff">
   <title>交易算法智能路由 | 黄瑞旸 Ryan Huang</title>
   <link rel="canonical" href="https://hrynb.github.io/quant-research.html">
-  <link rel="stylesheet" href="site.css?v=white-1">
+  <link rel="stylesheet" href="site.css?v=compact-1">
 </head>
 <body>
   <a class="skip-link" href="#main">跳转到正文</a>
@@ -38,7 +38,7 @@
         <dl class="specifications">
           <div><dt>QUESTION / 问题</dt><dd>交易算法的相对表现与选择</dd></div>
           <div><dt>TOOLS / 工具</dt><dd>Python · pandas · LightGBM</dd></div>
-          <div><dt>FORMAT / 展示</dt><dd>方法摘要，不披露业务数据</dd></div>
+          <div><dt>METHODS / 方法</dt><dd>配对差值 · P/Q双模型 · 走步验证</dd></div>
         </dl>
       </header>
 
@@ -54,7 +54,7 @@
           </ol>
         </nav>
 
-        <article class="research-content" aria-label="研究摘要">
+        <article class="research-content" aria-label="研究内容">
           <section id="question" aria-labelledby="question-title">
             <div class="chapter-heading"><span class="chapter-number mono">01</span><h2 id="question-title">问题与参与内容</h2></div>
             <p>相比单独预测某一算法的收益，路由决策更关心一个相对问题：在同一对象、同一目标期上，方案A是否优于默认方案B？即使两个方案都盈利，切换到相对较差的方案也可能损失增量收益。</p>
@@ -123,14 +123,13 @@
             <div class="chapter-heading"><span class="chapter-number mono">05</span><h2 id="reflection-title">工程与研究思考</h2></div>
             <p>除了模型本身，还需要将数据校验、训练、预测和日志记录串成可重复运行的流程。结果异常时，先核对数据完整性和口径，再判断是否为模型问题，不能把所有异常都解释为市场变化。</p>
             <p>这段研究让我更重视三个区别：排序能力不等于概率校准，方向正确不等于收益一定更高，回测表现也不等于未来保证。研究的价值不仅在于一个模型分数，还在于完整的数据边界、验证过程和可复查的决策记录。</p>
-            <p class="scope-note">展示范围：本页仅整理通用研究思路与个人参与内容，不提供机构标识、内部算法编号、业务数据、生产参数、源码或收益数字。内容用于个人项目介绍，不构成投资建议。</p>
           </section>
         </article>
       </div>
     </main>
 
     <footer class="site-footer">
-      <p>Ryan Huang / 黄瑞旸<br>QUANT RESEARCH · METHODS SUMMARY</p>
+      <p>Ryan Huang / 黄瑞旸</p>
       <a href="index.html#work">返回项目列表 <span aria-hidden="true">←</span></a>
       <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
     </footer>
