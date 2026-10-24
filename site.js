@@ -24,9 +24,10 @@ const photoSets = {
     { src: 'assets/photos/sports-07.webp', caption: '赛后合影', alt: '运动会背景板前佩戴奖牌的合影' },
   ],
   daily: [
-    { src: 'assets/photos/daily-01.webp', caption: '课堂合影', alt: '教室内的集体合影' },
-    { src: 'assets/photos/daily-02.webp', caption: '球场合影', alt: '球馆内的集体合影' },
-    { src: 'assets/photos/daily-03.webp', caption: '课间留影', alt: '教室里的合影' },
+    { src: 'assets/photos/daily-04.webp', caption: '志愿活动', alt: '田径赛事志愿活动合影' },
+    { src: 'assets/photos/daily-01.webp', caption: '支教活动', alt: '支教期间在教室内与小朋友的合影' },
+    { src: 'assets/photos/daily-03.webp', caption: '支教活动', alt: '支教期间与小朋友的集体留影' },
+    { src: 'assets/photos/daily-02.webp', caption: '体育部工作', alt: '体育部工作中的篮球场合影' },
   ],
 };
 
