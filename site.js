@@ -556,9 +556,12 @@ function initializeDecorations() {
       if (!width || !height || !candles.length) return;
       const low = Math.min(...candles.map(candle => candle.low)) - 4;
       const high = Math.max(...candles.map(candle => candle.high)) + 4;
+      const palette = getComputedStyle(document.documentElement);
+      const upColor = palette.getPropertyValue('--chart-up').trim();
+      const downColor = palette.getPropertyValue('--chart-down').trim();
       context.globalAlpha = 1;
       context.clearRect(0, 0, width, height);
-      context.strokeStyle = '#dddddd'; context.lineWidth = .6;
+      context.strokeStyle = palette.getPropertyValue('--chart-grid').trim(); context.lineWidth = .6;
       for (const fraction of [.25, .5, .75]) {
         context.beginPath(); context.moveTo(0, height * fraction); context.lineTo(width, height * fraction); context.stroke();
       }
@@ -570,7 +573,7 @@ function initializeDecorations() {
       candles.forEach((candle, index) => {
         const x = margin + index * pitch + 6;
         context.globalAlpha = index === candles.length - 1 ? 1 : .84;
-        context.strokeStyle = context.fillStyle = candle.close >= candle.open ? '#a33336' : '#545b61';
+        context.strokeStyle = context.fillStyle = candle.close >= candle.open ? upColor : downColor;
         context.lineWidth = 1;
         context.beginPath(); context.moveTo(x + 4, y(candle.high)); context.lineTo(x + 4, y(candle.low)); context.stroke();
         context.fillRect(x, Math.min(y(candle.open), y(candle.close)), 8, Math.max(2, Math.abs(y(candle.open) - y(candle.close))));
@@ -612,6 +615,7 @@ function initializeDecorations() {
     }
     resize();
     if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('themechange', draw);
     watchDecoration(entry, enabled => { active = enabled; updatePlayback(); });
   });
   document.querySelectorAll('[data-energy-bars]').forEach(chart => watchDecoration(chart.closest('.project-entry')));
