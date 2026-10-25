@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="home-scroll">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,10 +7,10 @@
   <meta name="theme-color" content="#ffffff">
   <title>黄瑞旸 Ryan Huang | 项目与作品</title>
   <link rel="canonical" href="https://hrynb.github.io/">
-  <link rel="stylesheet" href="site.css?v=interactive-1">
-  <script src="site.js?v=daily-2" defer></script>
+  <link rel="stylesheet" href="site.css?v=studio-4">
+  <script src="site.js?v=studio-4" defer></script>
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main">跳转到正文</a>
   <div class="page" id="top">
     <header class="site-header">
@@ -21,156 +21,144 @@
         <a href="#course-projects">课程项目</a>
         <a href="#experience">实习与比赛</a>
         <a href="#personal">个人风采</a>
+        <a href="#contact">联系</a>
         <a href="https://github.com/hrynb" target="_blank" rel="noopener noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
       </nav>
     </header>
+    <nav class="section-progress" data-section-progress aria-label="章节导航"></nav>
 
     <main id="main" tabindex="-1">
-      <section class="hero" id="about" aria-labelledby="name">
-        <div>
-          <p class="eyebrow mono">PERSONAL INDEX / 个人主页</p>
-          <h1 id="name"><span class="name-cn">黄瑞旸</span><span class="name-en" lang="en">Ryan Huang</span></h1>
-          <p class="hero-line">数据、模型与日常观察。</p>
-          <p class="hero-description">复旦大学本科在读，关注量化研究与数学建模，喜欢摄影、篮球和田径。</p>
-          <a class="hero-link" href="#work">浏览项目与作品 <span aria-hidden="true">↓</span></a>
+      <section class="scene-slot" id="about" aria-labelledby="name" data-scene data-chapter="about">
+        <div class="screen-panel hero-panel">
+          <div class="hero-copy">
+            <h1 id="name"><span class="name-en" lang="en">Ryan Huang</span><span class="name-cn">黄瑞旸</span></h1>
+            <p class="hero-description">复旦大学本科在读，关注量化研究与数学建模。</p>
+            <a class="hero-link" href="#work">浏览项目与作品 <span aria-hidden="true">↓</span></a>
+          </div>
+          <nav class="hero-coordinate quick-deck" aria-label="首页快捷导航">
+            <a class="deck-card" href="#work" aria-label="浏览项目与研究"><span class="deck-title">项目与研究</span><span class="deck-rule" aria-hidden="true"></span><span class="deck-arrow" aria-hidden="true">↗</span></a>
+            <a class="deck-card" href="#personal" aria-label="查看个人风采"><span class="deck-title">个人风采</span><span class="deck-rule" aria-hidden="true"></span><span class="deck-arrow" aria-hidden="true">↗</span></a>
+            <a class="deck-card" href="#contact" aria-label="查看联系方式"><span class="deck-title">联系方式</span><span class="deck-rule" aria-hidden="true"></span><span class="deck-arrow" aria-hidden="true">↗</span></a>
+          </nav>
         </div>
-        <aside class="profile-index" aria-label="个人索引">
-          <p class="profile-label mono">A SMALL COLLECTION OF WORK</p>
-          <dl>
-            <div><dt>EDUCATION / 教育</dt><dd>复旦大学 · 经济管理试验班</dd></div>
-            <div><dt>INTERESTS / 关注</dt><dd>数据分析、量化研究、数学建模</dd></div>
-            <div><dt>OUTSIDE RESEARCH / 研究之外</dt><dd>摄影、篮球与田径</dd></div>
-          </dl>
-        </aside>
       </section>
 
       <div id="work">
-        <section class="work-section" id="course-projects" aria-labelledby="courses-title">
+        <section class="chapter-group" id="course-projects" aria-labelledby="courses-title" data-chapter-group>
           <div class="section-heading">
             <div><p class="section-label mono">01 / COURSE PROJECTS</p><h2 id="courses-title">校内课程项目</h2></div>
           </div>
-          <article class="project hover-card" data-project-card>
-            <a class="project-entry" href="music-analysis.html" aria-describedby="music-preview">
-              <span class="project-number mono">01</span>
-              <span>
-                <span class="project-kind">DATA ANALYSIS / 数据分析</span>
-                <span class="project-name">音乐特征与流行度分析</span>
-                <span class="project-description">使用NumPy、pandas处理音乐数据，分析音乐特征与流行度的关系，并使用机器学习进行预测。</span>
-                <span class="project-tags">Python / pandas / Machine Learning</span>
-              </span>
-              <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
-            </a>
-            <div class="project-preview preview-panel" id="music-preview" role="tooltip" hidden>
-              <p class="preview-kicker mono">COURSE PROJECT / 数据分析</p>
-              <p>围绕音乐特征与流行度之间的联系，完成数据处理与分析，并将特征用于流行度预测，练习从数据探索到建模的完整过程。</p>
-            </div>
-          </article>
+          <div class="project-grid project-grid-single">
+            <article class="project hover-card" data-project-card data-theme="music">
+              <a class="project-entry" href="music-analysis.html" aria-labelledby="music-project-name" aria-describedby="music-preview">
+                <span class="project-name" id="music-project-name">音乐特征与流行度分析</span>
+                <div class="project-decoration music-decoration" data-music-notes aria-hidden="true"></div>
+                <div class="project-cover">
+                  <div class="project-cover-inner">
+                    <div class="project-meta"><span class="project-number mono">01</span><span class="project-kind">DATA ANALYSIS / 数据分析</span></div>
+                    <span class="project-description">使用NumPy、pandas处理音乐数据，分析音乐特征与流行度的关系，并使用机器学习进行预测。</span>
+                    <div class="project-preview" id="music-preview">
+                      <p class="preview-kicker mono">COURSE PROJECT / 数据分析</p>
+                      <p>围绕音乐特征与流行度之间的联系，完成数据处理与分析，并将特征用于流行度预测，练习从数据探索到建模的完整过程。</p>
+                    </div>
+                    <span class="project-tags">Python / pandas / Machine Learning</span>
+                    <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
         </section>
 
-        <section class="work-section" id="experience" aria-labelledby="experience-title">
+        <section class="chapter-group" id="experience" aria-labelledby="experience-title" data-chapter-group>
           <div class="section-heading">
             <div><p class="section-label mono">02 / INTERNSHIPS &amp; COMPETITIONS</p><h2 id="experience-title">校外实习 &amp; 比赛</h2></div>
           </div>
-          <article class="project hover-card" data-project-card>
-            <a class="project-entry" href="quant-research.html" aria-describedby="quant-preview">
-              <span class="project-number mono">01</span>
-              <span>
-                <span class="project-kind">INTERNSHIP / 量化研究实习</span>
-                <span class="project-name">交易算法智能路由</span>
-                <span class="project-description">比较不同交易算法的相对表现，构建差值标签与P/Q双模型，并通过走步回测评估路由策略。</span>
-                <span class="project-tags">Python / LightGBM / Walk-forward</span>
-              </span>
-              <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
-            </a>
-            <div class="project-preview preview-panel" id="quant-preview" role="tooltip" hidden>
-              <p class="preview-kicker mono">INTERNSHIP / 量化研究</p>
-              <p>围绕“同一对象上应选择哪一种算法”，参与数据处理、配对标签构建、模型评估与自动化流程搭建。</p>
-            </div>
-          </article>
+          <div class="project-grid">
+            <article class="project hover-card" data-project-card data-theme="quant">
+              <a class="project-entry" href="quant-research.html" aria-labelledby="quant-project-name" aria-describedby="quant-preview">
+                <span class="project-name" id="quant-project-name">交易算法智能路由</span>
+                <canvas class="project-decoration candle-decoration" data-candles aria-hidden="true"></canvas>
+                <div class="project-cover">
+                  <div class="project-cover-inner">
+                    <div class="project-meta"><span class="project-number mono">01</span><span class="project-kind">INTERNSHIP / 量化研究实习</span></div>
+                    <span class="project-description">比较不同交易算法的相对表现，构建差值标签与P/Q双模型，并通过走步回测评估路由策略。</span>
+                    <div class="project-preview" id="quant-preview">
+                      <p class="preview-kicker mono">INTERNSHIP / 量化研究</p>
+                      <p>围绕“同一对象上应选择哪一种算法”，参与数据处理、配对标签构建、模型评估与自动化流程搭建。</p>
+                    </div>
+                    <span class="project-tags">Python / LightGBM / Walk-forward</span>
+                    <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-          <article class="project hover-card" data-project-card>
-            <a class="project-entry" href="math-modeling.html" aria-describedby="modeling-preview">
-              <span class="project-number mono">02</span>
-              <span>
-                <span class="project-kind">COMPETITION / 数学建模竞赛</span>
-                <span class="project-name">微电网购电与储能调度</span>
-                <span class="project-description">围绕负荷、光伏与电价的不确定性，结合混合整数规划、场景分析和滚动优化制定购电与储能策略。</span>
-                <span class="project-tags">Python / MILP / Rolling Optimization</span>
-              </span>
-              <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
-            </a>
-            <div class="project-preview preview-panel" id="modeling-preview" role="tooltip" hidden>
-              <p class="preview-kicker mono">COMPETITION / 数学建模</p>
-              <p>以“微网与外部电网电力调控策略”为题，参与建模与数据分析，将预测、历史残差场景生成、优化求解与压力测试串成可复查的研究流程。</p>
-            </div>
-          </article>
+            <article class="project hover-card" data-project-card data-theme="energy">
+              <a class="project-entry" href="math-modeling.html" aria-labelledby="modeling-project-name" aria-describedby="modeling-preview">
+                <span class="project-name" id="modeling-project-name">微电网购电与储能调度</span>
+                <div class="project-decoration energy-decoration" data-energy-bars aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="project-cover">
+                  <div class="project-cover-inner">
+                    <div class="project-meta"><span class="project-number mono">02</span><span class="project-kind">COMPETITION / 数学建模竞赛</span></div>
+                    <span class="project-description">围绕负荷、光伏与电价的不确定性，结合混合整数规划、场景分析和滚动优化制定购电与储能策略。</span>
+                    <div class="project-preview" id="modeling-preview">
+                      <p class="preview-kicker mono">COMPETITION / 数学建模</p>
+                      <p>以“微网与外部电网电力调控策略”为题，参与建模与数据分析，将预测、历史残差场景生成、优化求解与压力测试串成可复查的研究流程。</p>
+                    </div>
+                    <span class="project-tags">Python / MILP / Rolling Optimization</span>
+                    <span class="project-control"><span class="control-label">查看项目</span><span class="project-arrow" aria-hidden="true">↗</span></span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
         </section>
 
-        <section class="work-section" id="personal" aria-labelledby="personal-title">
+        <section class="chapter-group" id="personal" aria-labelledby="personal-title" data-chapter-group>
           <div class="section-heading">
             <div><p class="section-label mono">03 / PERSONAL</p><h2 id="personal-title">个人风采</h2></div>
           </div>
           <div class="personal-grid">
-            <article class="personal-item gallery-card" data-gallery="photography">
-              <a class="gallery-trigger" href="gallery.html#photography" aria-expanded="false" aria-controls="photography-preview">
-                <p class="personal-type mono">01 / PHOTOGRAPHY</p>
-                <h3>摄影</h3>
-                <p>摄影协会核心成员，喜欢用照片记录生活中的光线、空间与片段。</p>
-                <span class="photo-cover-frame"><img class="photo-cover" src="assets/photos/photography-01.webp" alt="街道交叉口的红色出租车与行人" loading="lazy" decoding="async"></span>
+            <article class="personal-item personal-surface" data-gallery="photography">
+              <a class="gallery-trigger" href="gallery.html#photography">
+                <div class="personal-copy"><p class="personal-type mono">01 / PHOTOGRAPHY</p><h3>摄影</h3><p class="personal-description">摄影协会核心成员，喜欢用照片记录生活中的光线、空间与片段。</p></div>
+                <span class="portrait-frame" data-photo-stage><img class="portrait-image portrait-gray" data-current-gray src="assets/photos/photography-01.webp" alt="街道交叉口的红色出租车与行人" loading="lazy" decoding="async"><img class="portrait-image portrait-color" data-current-color src="assets/photos/photography-01.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
               </a>
-              <div class="gallery-popover preview-panel" id="photography-preview" role="region" aria-label="摄影图片预览" hidden>
-                <div class="gallery-header"><p>摄影</p><button class="preview-close" type="button" data-preview-close aria-label="关闭摄影预览">×</button></div>
-                <div class="gallery-stage"><img data-gallery-image src="assets/photos/photography-01.webp" alt="街道交叉口的红色出租车与行人" decoding="async"><p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p></div>
-                <p class="gallery-caption" data-gallery-caption>街头一刻</p>
-                <div class="gallery-controls">
-                  <div class="gallery-pagination"><button type="button" data-gallery-prev aria-label="上一张摄影作品">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 10</span><button type="button" data-gallery-next aria-label="下一张摄影作品">→</button></div>
-                  <a class="gallery-open" href="gallery.html#photography">打开相册 <span aria-hidden="true">↗</span></a>
-                </div>
-              </div>
+              <div class="personal-toolbar"><p class="gallery-caption" data-gallery-caption>街头一刻</p><div class="gallery-pagination"><button class="photo-arrow" type="button" data-gallery-prev aria-label="上一张摄影作品">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 10</span><button class="photo-arrow" type="button" data-gallery-next aria-label="下一张摄影作品">→</button></div><a class="gallery-open" href="gallery.html#photography">打开相册 <span aria-hidden="true">↗</span></a></div>
+              <p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p>
             </article>
-            <article class="personal-item gallery-card" data-gallery="sports">
-              <a class="gallery-trigger" href="gallery.html#sports" aria-expanded="false" aria-controls="sports-preview">
-                <p class="personal-type mono">02 / SPORTS</p>
-                <h3>篮球与田径</h3>
-                <p>参与校内篮球与田径赛事，曾获校田径运动会冠军和新生杯篮球赛季军。</p>
-                <span class="photo-cover-frame"><img class="photo-cover" src="assets/photos/sports-01.webp" alt="手持奖牌与背景中的田径场" loading="lazy" decoding="async"></span>
+            <article class="personal-item personal-surface" data-gallery="sports">
+              <a class="gallery-trigger" href="gallery.html#sports">
+                <div class="personal-copy"><p class="personal-type mono">02 / SPORTS</p><h3>篮球与田径</h3><p class="personal-description">参与校内篮球与田径赛事，曾获校田径运动会冠军和新生杯篮球赛季军。</p></div>
+                <span class="portrait-frame" data-photo-stage><img class="portrait-image portrait-gray" data-current-gray src="assets/photos/sports-01.webp" alt="手持奖牌与背景中的田径场" loading="lazy" decoding="async"><img class="portrait-image portrait-color" data-current-color src="assets/photos/sports-01.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
               </a>
-              <div class="gallery-popover preview-panel" id="sports-preview" role="region" aria-label="运动图片预览" hidden>
-                <div class="gallery-header"><p>篮球与田径</p><button class="preview-close" type="button" data-preview-close aria-label="关闭运动预览">×</button></div>
-                <div class="gallery-stage"><img data-gallery-image src="assets/photos/sports-01.webp" alt="手持奖牌与背景中的田径场" decoding="async"><p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p></div>
-                <p class="gallery-caption" data-gallery-caption>金牌与跑道</p>
-                <div class="gallery-controls">
-                  <div class="gallery-pagination"><button type="button" data-gallery-prev aria-label="上一张运动照片">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 07</span><button type="button" data-gallery-next aria-label="下一张运动照片">→</button></div>
-                  <a class="gallery-open" href="gallery.html#sports">打开相册 <span aria-hidden="true">↗</span></a>
-                </div>
-              </div>
+              <div class="personal-toolbar"><p class="gallery-caption" data-gallery-caption>金牌与跑道</p><div class="gallery-pagination"><button class="photo-arrow" type="button" data-gallery-prev aria-label="上一张运动照片">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 07</span><button class="photo-arrow" type="button" data-gallery-next aria-label="下一张运动照片">→</button></div><a class="gallery-open" href="gallery.html#sports">打开相册 <span aria-hidden="true">↗</span></a></div>
+              <p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p>
             </article>
-            <article class="personal-item gallery-card" data-gallery="daily">
-              <a class="gallery-trigger" href="gallery.html#daily" aria-expanded="false" aria-controls="daily-preview">
-                <p class="personal-type mono">03 / CAMPUS &amp; DAILY LIFE</p>
-                <h3>校园与日常</h3>
-                <p>参与志愿活动、支教及体育部工作。</p>
-                <span class="photo-cover-frame"><img class="photo-cover" src="assets/photos/daily-04.webp" alt="田径赛事志愿活动合影" loading="lazy" decoding="async"></span>
+            <article class="personal-item personal-surface" data-gallery="daily">
+              <a class="gallery-trigger" href="gallery.html#daily">
+                <div class="personal-copy"><p class="personal-type mono">03 / CAMPUS &amp; DAILY LIFE</p><h3>校园与日常</h3><p class="personal-description">参与志愿活动、支教及体育部工作。</p></div>
+                <span class="portrait-frame" data-photo-stage><img class="portrait-image portrait-gray" data-current-gray src="assets/photos/daily-04.webp" alt="田径赛事志愿活动合影" loading="lazy" decoding="async"><img class="portrait-image portrait-color" data-current-color src="assets/photos/daily-04.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
               </a>
-              <div class="gallery-popover preview-panel" id="daily-preview" role="region" aria-label="日常图片预览" hidden>
-                <div class="gallery-header"><p>校园与日常</p><button class="preview-close" type="button" data-preview-close aria-label="关闭日常预览">×</button></div>
-                <div class="gallery-stage"><img data-gallery-image src="assets/photos/daily-04.webp" alt="田径赛事志愿活动合影" decoding="async"><p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p></div>
-                <p class="gallery-caption" data-gallery-caption>志愿活动</p>
-                <div class="gallery-controls">
-                  <div class="gallery-pagination"><button type="button" data-gallery-prev aria-label="上一张日常照片">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 04</span><button type="button" data-gallery-next aria-label="下一张日常照片">→</button></div>
-                  <a class="gallery-open" href="gallery.html#daily">打开相册 <span aria-hidden="true">↗</span></a>
-                </div>
-              </div>
+              <div class="personal-toolbar"><p class="gallery-caption" data-gallery-caption>志愿活动</p><div class="gallery-pagination"><button class="photo-arrow" type="button" data-gallery-prev aria-label="上一张日常照片">←</button><span class="gallery-counter mono" data-gallery-counter aria-live="polite">01 / 04</span><button class="photo-arrow" type="button" data-gallery-next aria-label="下一张日常照片">→</button></div><a class="gallery-open" href="gallery.html#daily">打开相册 <span aria-hidden="true">↗</span></a></div>
+              <p class="gallery-error" data-gallery-error role="status" hidden>图片未能加载。</p>
             </article>
           </div>
         </section>
       </div>
+      <section class="scene-slot" id="contact" aria-labelledby="contact-title" data-scene data-chapter="contact">
+        <div class="screen-panel contact-panel">
+          <p class="section-label mono">04 / CONTACT</p>
+          <h2 id="contact-title">联系方式</h2>
+          <p class="thanks-line">谢谢你看到这里。</p>
+          <p class="contact-note">欢迎交流项目与想法。</p>
+          <div class="email-contact"><div><p class="email-label mono">EMAIL</p><p class="email-address">2430****006@m.fudan.edu.cn</p></div><button class="copy-email" type="button" data-copy-email>复制邮箱 <span aria-hidden="true">↗</span></button></div>
+          <p class="copy-status" data-copy-status role="status" aria-live="polite"></p>
+          <footer class="site-footer"><p>Ryan Huang / 黄瑞旸</p><a href="#top">回到页首 <span aria-hidden="true">↑</span></a></footer>
+        </div>
+      </section>
     </main>
-
-    <footer class="site-footer">
-      <p>Ryan Huang / 黄瑞旸</p>
-      <a href="#top">回到页首 <span aria-hidden="true">↑</span></a>
-    </footer>
   </div>
 </body>
 </html>
